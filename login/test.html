@@ -27,6 +27,12 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 			
+
+			 function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
 			
 		</script>
 		<div class="props-banner-container" >
@@ -85,13 +91,16 @@
 					</button>
 				</div>
 				<div class="btn-group">
-			             <button class="btn btn-facebook btn-billboard"  onclick="checkLoginState();">
+			             
+			             <fb:login-button  class="btn btn-facebook btn-billboard"  type="button"  onlogin="checkLoginState();">
 										 
 			                <i class="ynicon ynicon-social-fb"></i>
 											<div class="smicon-divider"></div>
 			                <!----><span ng-if="!loggingIn.facebook" class="transline"><span translate="loginmodal_signinwith">Sign in with</span> <span>Facebook</span></span><!---->
 			                <!---->
-										 <script>
+
+						 </fb:login-button >
+					 <script>
 
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
@@ -115,11 +124,7 @@
   // This function is called when someone finishes with the Login
   // Button.  See the onlogin handler attached to it in the sample
   // code below.
-  function checkLoginState() {
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
-  }
+ 
 
  
 
