@@ -138,20 +138,21 @@
 /* Video Box */
 
 #vid-box video{
+	border-radius: 20px;
 	width: 100%;
 	height: auto;
     max-height: 50vh;
     
 }
 body{
-    background-color: #eff1f1;
+    background-color: #333333;
 }
 .bodyDiv{
     text-align: center;
 }
 
 .video2{
-    width: 33%;
+    width: 20%;
 }
 
 video{
