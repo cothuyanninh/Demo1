@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Live Streaming</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="img/inconwifi.png">
+    <link rel="stylesheet" type="text/css" href="vendor/fonts/font-awesome-4.3.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" href="vendor/css/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="vendor/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://vjs.zencdn.net/6.2.7/video-js.css">
+    <link rel="stylesheet" type="text/css" href="css/logo.css">
+    <link rel="stylesheet" type="text/css" href="css/stream-page.css">
+    <script src="vendor/js/jquery/jquery-3.2.1.min.js"></script>
+    <script src="vendor/js/bootstraps/bootstrap.min.js"></script>
+    <script src="https://vjs.zencdn.net/6.2.7/video.js"></script>
+    <script src="js/modernizr.custom.js"></script>
+    <script src="js/test1.js"></script>
+    <script src="js/webrtc.js"></script>
+    <script src="js/rtc-controller.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="wrapper">
+            <nav id="nav-bar" class="navbar navbar-inverse">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-brand" id="logo">
+                        <li><a href=""><span>LIVE</span></a></li>
+                    </div>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="stream-page.html">Stream now</a></li>
+                        <li><a href="call-page.html">Call now</a></li>
+                        <li><a href="group-call-page.html">Group call</a></li>
+                        <li><a href="screen-broadcast-page.html">Karaoke</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><img id="fb-pic" src=""><span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Infomation</a></li>
+                                <li><a href="#">Settings</a></li>
+                                <li><a href="#">Log out</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="section">
+                <!-- <video style="max-width: 1920px;" id="stream-video" class="video-js vjs-default-skin" controls preload autobuffer poster='' data-setup='{ "aspectRatio":"16:9", "playbackRates": [] }'>
+                    <source src="demo.mp4" type='video/mp4' />
+                    <source src="" type='video/webm' />
+                </video> -->
+                <div id="vid-box"></div>
+                <div class="video-detail">
+                    <h3>Lạc Trôi - Sơn Tùng MTP</h3>
+                    <h4>Watching: 25000 people</h4>
+                    <hr>
+                </div>
+            </div>
+            <div class="aside">
+                <div class="bodyDiv">
+
+                    <div id="stream-info" hidden="true">
+                        <button id="end" onclick="end()" hidden="true">Done</button>
+                        <img src="img/person_dark.png" />
+                        <span id="here-now">0</span>
+                    </div>
+                    <form name="streamForm" id="stream" action="#" onsubmit="return errWrap(stream,this);">
+                        <span class="input input--nao">
+        <input class="input__field input__field--nao" type="text" name="streamname" placeholder="Enter Stream Name" id="streamname"/>
+                <label class="input__label input__label--nao" for="streamname">
+                    <span class="input__label-content input__label-content--nao">        
+                    </span>
+                        </label>
+                        <svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+                            <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0" />
+                        </svg>
+                        </span>
+                        <button class="cbutton cbutton--effect-radomir" type="submit" value="Stream" name="stream_submit" style="margin-top: 40px; margin-left:-10px">
+                            <i class="cbutton__icon fa fa-fw fa fa fa-video-camera"></i>
+                        </button>
+                    </form>
+                    <form name="watchForm" id="watch" action="#" onsubmit="return errWrap(watch,this);">
+                        <span class="input input--nao">
+        <input class="input__field input__field--nao" type="text" name="number" placeholder="Enter Stream To Watch!"/>
+                <label class="input__label input__label--nao">
+                    <span class="input__label-content input__label-content--nao">        
+                    </span>
+                        </label>
+                        <svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+                            <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0" />
+                        </svg>
+                        </span>
+                        <button class="cbutton cbutton--effect-radomir" type="submit" value="Watch" style="margin-top: 40px; margin-left:-10px">
+                            <i class="cbutton__icon fa fa-fw fa fa-eye"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <script type="text/javascript" src="js/stream-controller.js"></script>
+        </div>
+        <div class="footer">
+            <address>
+                Copyright &#9400; K60-N team. All rights reserved
+                <br> 144 Xuan Thuy, Cau Giay, Ha Noi
+            </address>
+        </div>
+    </div>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('body').addClass('animated fadeInDown');
+        var FacebookId = 100011304962089;
+        $("#fb-pic").attr('src', 'https://graph.facebook.com/' + FacebookId + '/picture?w‌​idth=30&height=30');
+
+
+    });
+    $('button').click(function () {
+        $("video").addClass("video-js vjs-default-skin");
+        $("video").attr("controls","");
+    });
+    </script>
+</body>
+
+</html>

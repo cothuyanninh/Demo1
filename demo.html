@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="vendor/css/bootstrap/bootstrap.min.css">
+    <style>
+        .clear::after{
+            content: "";
+            clear: both;
+            display: table;
+        }
+        body{
+            margin: 0;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left:0;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid clear" style="margin: 0;padding: 0; width: 100%; height: 100%;">
+            <video style="min-width: 100%; min-height: 100%; position: absolute; top: 0%; right: 0%; bottom: 0;" class="slide-video hero-video-lazyload" preload="auto" autoplay="" loop="" muted="">
+                <source src="img/videobackground.webm" type="video/webm">
+            </video>
+    </div>
+</body>
+</html>
