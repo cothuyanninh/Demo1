@@ -136,7 +136,6 @@ function login(form) {
 		form.username.style.background="#55ff5b";
 		form.login_submit.hidden="true";
 		ctrl.addLocalStream(vid_thumb);
-		ctrl.addLocalStream(screen_stream);
 		addLog("Logged in as " + form.username.value);
 	});
 	ctrl.receive(function(session){
