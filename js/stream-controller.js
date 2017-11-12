@@ -18,7 +18,7 @@ function stream(form) {
     });
     //phone.debug(function(m){ console.log(m); })
     var ctrl = window.ctrl = CONTROLLER(phone);
-    ctrl.ready(function() {
+    ctrl.ready(function () {
         form.streamname.style.background = "#55ff5b";
         form.streamname.value = phone.number();
         //      form.stream_submit.hidden="true"; 
@@ -28,14 +28,16 @@ function stream(form) {
         end_stream.hidden = false;
         addLog("Streaming to " + streamName);
     });
-    ctrl.receive(function(session) {
-        session.connected(function(session) { addLog(session.number + " has joined."); });
-        session.ended(function(session) {
+    ctrl.receive(function (session) {
+        session.connected(function (session) {
+            addLog(session.number + " has joined.");
+        });
+        session.ended(function (session) {
             addLog(session.number + " has left.");
             console.log(session)
         });
     });
-    ctrl.streamPresence(function(m) {
+    ctrl.streamPresence(function (m) {
         here_now.innerHTML = m.occupancy;
         addLog(m.occupancy + " currently watching.");
     });
@@ -51,22 +53,24 @@ function watch(form) {
         oneway: true
     });
     var ctrl = window.ctrl = CONTROLLER(phone);
-    ctrl.ready(function() {
-        ctrl.isStreaming(num, function(isOn) {
+    ctrl.ready(function () {
+        ctrl.isStreaming(num, function (isOn) {
             if (isOn) ctrl.joinStream(num);
             else alert("User is not streaming!");
         });
         addLog("Joining stream  " + num);
     });
-    ctrl.receive(function(session) {
-        session.connected(function(session) {
+    ctrl.receive(function (session) {
+        session.connected(function (session) {
             video_out.appendChild(session.video);
             addLog(session.number + " has joined.");
             stream_info.hidden = false;
         });
-        session.ended(function(session) { addLog(session.number + " has left."); });
+        session.ended(function (session) {
+            addLog(session.number + " has left.");
+        });
     });
-    ctrl.streamPresence(function(m) {
+    ctrl.streamPresence(function (m) {
         here_now.innerHTML = m.occupancy;
         addLog(m.occupancy + " currently watching.");
     });
@@ -109,9 +113,10 @@ function errWrap(fxn, form) {
         return false;
     }
 }
-(function(i, s, o, g, r, a, m) {
+
+(function (i, s, o, g, r, a, m) {
     i['GoogleAnalyticsObject'] = r;
-    i[r] = i[r] || function() {
+    i[r] = i[r] || function () {
         (i[r].q = i[r].q || []).push(arguments)
     }, i[r].l = 1 * new
     Date();

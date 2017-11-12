@@ -8,41 +8,61 @@
  *
  */
 
-(function(){
+(function () {
 
 
-    var CONTROLLER = window.CONTROLLER = function(phone){
+    var CONTROLLER = window.CONTROLLER = function (phone) {
         if (!window.phone) window.phone = phone;
-        var ctrlChan  = controlChannel(phone.number());
-        var pubnub    = phone.pubnub;
+        var ctrlChan = controlChannel(phone.number());
+        var pubnub = phone.pubnub;
         var userArray = [];
         subscribe();
 
-        var CONTROLLER = function(){};
+        var CONTROLLER = function () {
+        };
 
         // Get the control version of a users channel
-        function controlChannel(number){
+        function controlChannel(number) {
             return number + "-ctrl";
         }
 
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         // Setup Phone and Session callbacks.
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-        var readycb   = function(){};
-        var unablecb  = function(){};
-        var receivecb = function(session){};
-        var videotogglecb = function(session, isEnabled){};
-        var audiotogglecb = function(session, isEnabled){};
+        var readycb = function () {
+        };
+        var unablecb = function () {
+        };
+        var receivecb = function (session) {
+        };
+        var videotogglecb = function (session, isEnabled) {
+        };
+        var audiotogglecb = function (session, isEnabled) {
+        };
 
-        CONTROLLER.ready   = function(cb) { readycb   = cb };
-        CONTROLLER.unable  = function(cb) { unablecb  = cb };
-        CONTROLLER.receive = function(cb) { receivecb = cb };
-        CONTROLLER.videoToggled = function(cb) { videotogglecb = cb };
-        CONTROLLER.audioToggled = function(cb) { audiotogglecb = cb };
+        CONTROLLER.ready = function (cb) {
+            readycb = cb
+        };
+        CONTROLLER.unable = function (cb) {
+            unablecb = cb
+        };
+        CONTROLLER.receive = function (cb) {
+            receivecb = cb
+        };
+        CONTROLLER.videoToggled = function (cb) {
+            videotogglecb = cb
+        };
+        CONTROLLER.audioToggled = function (cb) {
+            audiotogglecb = cb
+        };
 
-        phone.ready(function(){ readycb() });
-        phone.unable(function(){ unablecb() });
-        phone.receive(function(session){
+        phone.ready(function () {
+            readycb()
+        });
+        phone.unable(function () {
+            unablecb()
+        });
+        phone.receive(function (session) {
             manage_users(session);
             receivecb(session);
         });
@@ -63,79 +83,90 @@
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         // Setup broadcasting, your screen to all.
         // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-        var streamreceivecb = function(m){};
-        var streamprescb    = function(m){};
+        var streamreceivecb = function (m) {
+        };
+        var streamprescb = function (m) {
+        };
         var stream_name = "";
 
 
-        CONTROLLER.streamPresence = function(cb){ streamprescb    = cb; }
-        CONTROLLER.streamReceive  = function(cb){ streamreceivecb = cb; }
+        CONTROLLER.streamPresence = function (cb) {
+            streamprescb = cb;
+        }
+        CONTROLLER.streamReceive = function (cb) {
+            streamreceivecb = cb;
+        }
 
-        function broadcast(vid){
+        function broadcast(vid) {
             var video = document.createElement('video');
-            video.src    = URL.createObjectURL(phone.mystream);
+            video.src = URL.createObjectURL(phone.mystream);
             video.volume = 0.0;
             video.play();
-            video.setAttribute( 'autoplay', 'autoplay' );
-            video.setAttribute( 'data-number', phone.number() );
+            video.setAttribute('autoplay', 'autoplay');
+            video.setAttribute('data-number', phone.number());
             // vid.style.cssText ="-moz-transform: scale(-1, 1); \
             // 			 	-webkit-transform: scale(-1, 1); -o-transform: scale(-1, 1); \
             // 				transform: scale(-1, 1); filter: FlipH;";
             vid.appendChild(video);
         };
 
-        function stream_subscribe(name){
+        function stream_subscribe(name) {
             var ch = (name ? name : phone.number()) + "-stream";
             pubnub.subscribe({
-                channel    : ch,
-                message    : streamreceivecb,
-                presence   : streamprescb,
-                connect    : function() { stream_name = ch; console.log("Streaming channel " + ch); }
+                channel: ch,
+                message: streamreceivecb,
+                presence: streamprescb,
+                connect: function () {
+                    stream_name = ch;
+                    console.log("Streaming channel " + ch);
+                }
             });
         }
 
-        CONTROLLER.stream = function(){
+        CONTROLLER.stream = function () {
             stream_subscribe();
         }
 
-        CONTROLLER.joinStream = function(name){
+        CONTROLLER.joinStream = function (name) {
             stream_subscribe(name);
             publishCtrl(controlChannel(name), "userJoin", phone.number());
         }
 
-        CONTROLLER.leaveStream = function(name){
+        CONTROLLER.leaveStream = function (name) {
             var ch = (name ? name : phone.number()) + "-stream";
             pubnub.unsubscribe({
-                channel    : ch,
+                channel: ch,
             });
         }
 
-        CONTROLLER.send = function( message, number ) {
+        CONTROLLER.send = function (message, number) {
             if (phone.oneway) return stream_message(message);
             phone.send(message, number);
         };
 
-        function stream_message(message){
+        function stream_message(message) {
             if (!stream_name) return; // Not in a stream
             pubnub.publish({
                 channel: stream_name,
                 message: msg,
-                callback : function(m){console.log(m)}
+                callback: function (m) {
+                    console.log(m)
+                }
             });
         }
 
 
         // Give it a div and it will set up the thumbnail image
-        CONTROLLER.addLocalStream = function(streamHolder){
+        CONTROLLER.addLocalStream = function (streamHolder) {
             broadcast(streamHolder);
         };
 
-        CONTROLLER.dial = function(number, servers){ // Authenticate here??
+        CONTROLLER.dial = function (number, servers) { // Authenticate here??
             var session = phone.dial(number, servers); // Dial Number
             if (!session) return; // No Duplicate Dialing Allowed
         };
 
-        CONTROLLER.hangup = function(number){
+        CONTROLLER.hangup = function (number) {
             if (number) {
                 if (phone.oneway) CONTROLLER.leaveStream(number);
                 phone.hangup(number);
@@ -143,56 +174,56 @@
             }
             if (phone.oneway) CONTROLLER.leaveStream();
             phone.hangup();
-            for (var i=0; i < userArray.length; i++) {
+            for (var i = 0; i < userArray.length; i++) {
                 var cChan = controlChannel(userArray[i].number);
                 publishCtrl(cChan, "userLeave", phone.number());
             }
         };
 
-        CONTROLLER.toggleAudio = function(){
+        CONTROLLER.toggleAudio = function () {
             var audio = false;
             var audioTracks = window.phone.mystream.getAudioTracks();
             for (var i = 0, l = audioTracks.length; i < l; i++) {
                 audioTracks[i].enabled = !audioTracks[i].enabled;
                 audio = audioTracks[i].enabled;
             }
-            publishCtrlAll("userAudio", {user : phone.number(), audio:audio}); // Stream false if paused
+            publishCtrlAll("userAudio", {user: phone.number(), audio: audio}); // Stream false if paused
             return audio;
         };
 
-        CONTROLLER.toggleVideo = function(){
+        CONTROLLER.toggleVideo = function () {
             var video = false;
             var videoTracks = window.phone.mystream.getVideoTracks();
             for (var i = 0, l = videoTracks.length; i < l; i++) {
                 videoTracks[i].enabled = !videoTracks[i].enabled;
                 video = videoTracks[i].enabled;
             }
-            publishCtrlAll("userVideo", {user : phone.number(), video:video}); // Stream false if paused
+            publishCtrlAll("userVideo", {user: phone.number(), video: video}); // Stream false if paused
             return video;
         };
 
-        CONTROLLER.isOnline = function(number, cb){
+        CONTROLLER.isOnline = function (number, cb) {
             pubnub.here_now({
-                channel : number,
-                callback : function(m){
+                channel: number,
+                callback: function (m) {
                     console.log(m);  // TODO Comment out
                     cb(m.occupancy != 0);
                 }
             });
         };
 
-        CONTROLLER.isStreaming = function(number, cb){
-            CONTROLLER.isOnline(number+"-stream", cb);
+        CONTROLLER.isStreaming = function (number, cb) {
+            CONTROLLER.isOnline(number + "-stream", cb);
         };
 
-        CONTROLLER.getVideoElement = function(number){
-            return $('*[data-number="'+number+'"]');
+        CONTROLLER.getVideoElement = function (number) {
+            return $('*[data-number="' + number + '"]');
         }
 
-        function manage_users(session){
+        function manage_users(session) {
             if (session.number == phone.number()) return; 	// Do nothing if it is self.
             var idx = findWithAttr(userArray, "number", session.number); // Find session by number
-            if (session.closed){
+            if (session.closed) {
                 if (idx != -1) userArray.splice(idx, 1)[0]; // User leaving
             } else {  				// New User added to stream/group
                 if (idx == -1) {  	// Tell everyone in array of new user first, then add to array.
@@ -200,51 +231,58 @@
                     userArray.push(session);
                 }
             }
-            userArray = userArray.filter(function(s){ return !s.closed; }); // Clean to only open talks
+            userArray = userArray.filter(function (s) {
+                return !s.closed;
+            }); // Clean to only open talks
             // console.log(userArray);
         }
 
-        function add_to_stream(number){
+        function add_to_stream(number) {
             phone.dial(number);
         }
 
-        function add_to_group(number){
+        function add_to_group(number) {
             var session = phone.dial(number, get_xirsys_servers()); // Dial Number
             if (!session) return; 	// No Dupelicate Dialing Allowed
         }
 
-        function publishCtrlAll(type, data){
-            for (var i=0; i < userArray.length; i++) {
+        function publishCtrlAll(type, data) {
+            for (var i = 0; i < userArray.length; i++) {
                 var cChan = controlChannel(userArray[i].number);
                 publishCtrl(cChan, type, data);
             }
         }
 
-        function publishCtrl(ch, type, data){
+        function publishCtrl(ch, type, data) {
             // console.log("Pub to " + ch);
             var msg = {type: type, data: data};
             pubnub.publish({
                 channel: ch,
                 message: msg,
-                callback : function(m){console.log(m)}
+                callback: function (m) {
+                    console.log(m)
+                }
             });
         }
 
-        function subscribe(){
+        function subscribe() {
             pubnub.subscribe({
-                channel    : ctrlChan,
-                message    : receive,
-                connect    : function() {} // console.log("Subscribed to " + ctrlChan); }
+                channel: ctrlChan,
+                message: receive,
+                connect: function () {
+                } // console.log("Subscribed to " + ctrlChan); }
             });
         }
 
-        function receive(m){
-            switch(m.type) {
+        function receive(m) {
+            switch (m.type) {
                 case "userCall":
                     callAuth(m.data);
                     break;
                 case "userJoin":
-                    if (phone.oneway){ add_to_stream(m.data); }// JOIN STREAM HERE!
+                    if (phone.oneway) {
+                        add_to_stream(m.data);
+                    }// JOIN STREAM HERE!
                     else add_to_group(m.data);
                     break;
                 case "userLeave":
@@ -266,8 +304,8 @@
         }
 
         function findWithAttr(array, attr, value) {
-            for(var i = 0; i < array.length; i += 1) {
-                if(array[i][attr] === value) {
+            for (var i = 0; i < array.length; i += 1) {
+                if (array[i][attr] === value) {
                     return i;
                 }
             }
@@ -296,7 +334,7 @@ function get_xirsys_servers() {
             secret: 'b9066b5e-1f75-11e5-866a-c400956a1e19',
             secure: 1,
         },
-        success: function(res) {
+        success: function (res) {
             console.log(res);
             res = JSON.parse(res);
             if (!res.e) servers = res.d.iceServers;
