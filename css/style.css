@@ -141,11 +141,13 @@
 }
 
 body {
-    background-color: #696969;
+	padding-bottom: 300px; 
+    background-color: #696969 !important;
 }
 
 .bodyDiv {
     text-align: center;
+    background-color: #696969;
 }
 
 .video2 {
