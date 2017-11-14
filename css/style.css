@@ -134,14 +134,14 @@
 /* Video Box */
 
 #vid-box video {
-    width: 100%;
+    width: 20%;
     height: auto;
     max-height: 50vh;
 
 }
 
 body {
-    background-color: #eff1f1;
+    background-color: #696969;
 }
 
 .bodyDiv {
@@ -149,7 +149,7 @@ body {
 }
 
 .video2 {
-    width: 33%;
+    width: 25%;
 }
 
 video {
