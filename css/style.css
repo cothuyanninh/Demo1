@@ -149,11 +149,11 @@ body {
 }
 
 .video2 {
-    width: 33%;
+    width: 25%;
 }
 
 video {
-    width: 25%;
+    width: 30%;
 
 }
 
@@ -161,6 +161,7 @@ video {
 and (min-width: 320px)
 and (max-width: 800px) {
     #vid-box video {
+        border-radius: 20px;
         width: 100%;
         height: auto;
     }
