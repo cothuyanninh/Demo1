@@ -233,7 +233,7 @@
     width: 100%;
 }
 #vid-box video {
-    max-width: 100%;
+    width: 25%;
     height: auto;
 }
 #vid-thumb video{
