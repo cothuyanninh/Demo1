@@ -364,6 +364,7 @@ perspective effects (not including the modals and the overlay).
 .cbutton {
     position: relative;
     display: inline-block;
+    border-radius: 30px;
     margin: 1em;
     padding: 0;
     border: none;
