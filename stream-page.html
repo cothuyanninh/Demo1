@@ -55,7 +55,7 @@
         <div class="section">
             <div>
                 <div id="div__pre-vid">
-                    <video id="pre-vid" autoplay loop muted class="cld-video-player">
+                    <video id="pre-vid" autoplay loop muted >
                         <source src="img/pew1.mp4" type="video/mp4">
                     </video>
                 </div>
@@ -102,7 +102,7 @@
                             <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
                         </svg>
                         </span>
-                    <button id="viewer-button" class="cbutton cbutton--effect-radomir" type="submit" value="Watch"
+                    <button id="user-button" class="cbutton cbutton--effect-radomir" type="submit" value="Watch"
                             style="margin-top: 40px; margin-left:-10px">
                         <i class="cbutton__icon fa fa-fw fa fa-eye"></i>
                     </button>
@@ -119,10 +119,9 @@
         $('#stream-button').click(function () {
             $('#pre-vid').hide();
         });
-        $('#viewer-button').click(function () {
+        $('#user-button').click(function () {
             $('#pre-vid').hide();
         });
-
     });
 </script>
 </body>
