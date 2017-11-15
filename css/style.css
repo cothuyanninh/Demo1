@@ -150,10 +150,12 @@ body {
 
 .video2 {
     width: 25%;
+    border-radius: 20px;
 }
 
 video {
     width: 30%;
+    border-radius: 20px;
 
 }
 
