@@ -137,22 +137,19 @@
     width: 100%;
     height: auto;
     max-height: 50vh;
+
 }
 
 body {
-	padding-bottom: 300px; 
-    background-color: #696969 !important;
+    background-color: #eff1f1;
 }
 
 .bodyDiv {
     text-align: center;
-    background-color: #696969;
 }
 
 .video2 {
-    width: 20%;
-    border-radius: 20px;
-    
+    width: 33%;
 }
 
 video {

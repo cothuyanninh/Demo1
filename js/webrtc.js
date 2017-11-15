@@ -419,7 +419,7 @@
             vid.setAttribute('autoplay', 'autoplay');
             vid.setAttribute('data-number', number);
             vid.src = URL.createObjectURL(stream);
-    
+
             talk.video = vid;
             talk.connect(talk);
         }

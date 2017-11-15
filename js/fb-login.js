@@ -1,7 +1,7 @@
 // initialize and setup facebook js sdk
 window.fbAsyncInit = function () {
     FB.init({
-        appId: '853276941508723',
+        appId: '1280051495474685',
         xfbml: true,
         version: 'v2.8'
     });
@@ -67,6 +67,12 @@ function login() {
 function getInfo() {
     FB.api('/me', 'GET', {fields: 'first_name,last_name,name,id'}, function (response) {
         document.getElementById('status').innerHTML = response.name;
+    });
+}
+
+function getProfilePicture() {
+    FB.api('/me', 'GET', {fields: 'first_name,last_name,name,id,picture.width(30).height(30)'}, function(response) {
+        document.getElementById('fb-pic').innerHTML = "<img src='" + response.picture.data.url + "'>";
     });
 }
 

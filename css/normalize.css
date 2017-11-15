@@ -8837,15 +8837,6 @@ video::-webkit-media-text-track-display {
     z-index: 1
 }
 
-html {
-    overflow-y: scroll
-}
-
-body {
-    background-color: #f2f0f1;
-    margin: 0 auto
-}
-
 body .coin-sm {
     width: 20px
 }
@@ -8858,17 +8849,6 @@ ul {
 
 a, span {
     font-weight: 400
-}
-
-span {
-    margin: 0;
-    color: #464646
-}
-
-html, body, span, a, select, textarea, button {
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
 }
 
 [prevent-default] {

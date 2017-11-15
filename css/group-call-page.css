@@ -21,7 +21,7 @@
 #nav-bar {
     margin-bottom: 0;
     border-radius: 0;
-    background-color: #4B0082;
+    background-color: #2c8383;
     border: none;
     margin-bottom: 5px;
 }
@@ -54,35 +54,10 @@
     text-align: center;
 }
 
-.friend-video {
-    width: 98%;
-    margin: auto;
-}
-
-.online-friend {
-    width: 95%;
-    height: 500px;
-    margin: auto;
-    border: 1px solid #4B0082;
-    text-align: center;
-    color: #4B0082;
-}
-
-.video-js .vjs-big-play-button {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    -webkit-transform: translateX(-50%) translateY(-50%);
-}
-
-.video-detail h3 {
-    margin-top: 10px;
-}
 
 #myNavbar a {
     color: #ffffff;
-    background-color: #4B0082;
+    background-color: #2c8383;
 }
 
 #myNavbar ul {
@@ -90,7 +65,7 @@
 }
 
 .navbar-nav > .open > a {
-    background-color: #4B0082 !important;
+    background-color: #2c8383 !important;
 }
 
 .navbar-inverse .navbar-toggle {
@@ -99,7 +74,7 @@
 
 .navbar-inverse .navbar-toggle:focus,
 .navbar-inverse .navbar-toggle:hover {
-    background-color: #4B0082;
+    background-color: #2c8383;
 }
 
 #myNavbar ul li {
@@ -116,5 +91,5 @@
 }
 
 .dropdown ul {
-    background-color: #4B0082;
+    background-color: #2c8383;
 }
