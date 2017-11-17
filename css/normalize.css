@@ -374,7 +374,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 audio, canvas, progress, video {
-	border-radius: 25px;
     display: inline-block;
     vertical-align: baseline
 }

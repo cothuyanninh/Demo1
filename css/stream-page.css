@@ -1,7 +1,12 @@
+html{
+    height: 100%;
+    background-color: #EEEEEE;
+}
 .container-fluid {
     padding: 0;
     overflow: hidden;
     min-width: 905px;
+    background-color: #EEEEEE;
 }
 #nav-bar {
     margin-bottom: 0;
@@ -21,11 +26,6 @@
 .aside {
     width: 35%;
     float: left;
-}
-
-.footer {
-    width: 100%;
-    text-align: center;
 }
 
 #myNavbar a {
@@ -53,18 +53,6 @@
 #myNavbar ul li {
     font-size: 17px;
     padding-top: 5px;
-    background-color: #01579B;
-}
-
-.dropdown a {
-    padding-top: 8px !important;
-}
-
-.dropdown a img {
-    border-radius: 20px;
-}
-
-.dropdown ul {
     background-color: #01579B;
 }
 
@@ -208,24 +196,13 @@
 }
 
 #vid-box video {
-    min-width: 100%;
-    min-height: 100%;
+    width: 82%;
 }
 #pre-vid{
-    min-width: 100%;
-    min-height: 100%;
+    width: 100%;
 }
 .bodyDiv {
     text-align: center;
-}
-
-.video2 {
-    width: 33%;
-}
-
-video {
-    width: 25%;
-
 }
 
 @media only screen
@@ -432,7 +409,7 @@ perspective effects (not including the modals and the overlay).
     padding: 0;
     border: none;
     background: none;
-    color: #19a2c6;
+    color: #01579B;
     font-size: 1.4em;
     overflow: visible;
     -webkit-transition: color 0.7s;

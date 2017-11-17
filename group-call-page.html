@@ -15,8 +15,7 @@
     <link rel="stylesheet" href="css/group-call-page.css">
 </head>
 <body>
-
-<div class="header">
+<div class="container-fluid">
     <nav id="nav-bar" class="navbar navbar-inverse">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -25,7 +24,7 @@
                 <span class="icon-bar"></span>
             </button>
             <div class="navbar-brand" id="logo">
-                <li><a href=""><span>LIVE</span></a></li>
+                <li><a href="home-page.html"><span>LIVE</span></a></li>
             </div>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
@@ -33,21 +32,11 @@
                 <li><a href="stream-page.html">Stream now</a></li>
                 <li><a href="call-page.html">Call now</a></li>
                 <li><a href="group-call-page.html">Group call</a></li>
-                <li><a href="screen-broadcast-page.html">Karaoke</a></li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><img id="fb-pic" src=""><span
-                            class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Infomation</a></li>
-                        <li><a href="#">Settings</a></li>
-                        <li><a href="#">Log out</a></li>
-                    </ul>
-                </li>
+                <li><a href="screen-broadcast-page.html">Screen broadcast</a></li>
             </ul>
         </div>
     </nav>
-</div>
-<div class="container-fluid">
+
     <div class="bodyDiv">
 
         <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
@@ -76,10 +65,9 @@
             </button>
         </form>
 
-        <form name="callForm" id="call" action="#" onsubmit="return errWrap(makeCall,this);">
+        <form name="callForm" action="#" onsubmit="return errWrap(makeCall,this);">
         <span class="input input--nao">
-            <input class="input__field input__field--nao" type="text" name="number" id="call"
-                   placeholder="Enter User To Call!"/>
+            <input class="input__field input__field--nao" type="text" name="number" placeholder="Enter User To Call!"/>
 					<label class="input__label input__label--nao">
 						<span class="input__label-content input__label-content--nao">
                         </span>
@@ -114,5 +102,10 @@
 
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('body').addClass('animated fadeInRight');
+    });
+</script>
 </body>
 </html>
