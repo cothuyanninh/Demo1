@@ -65,7 +65,7 @@
                 var name;
                  FB.api('/me', function(response){
                     name = response.name;
-                    }
+                    });
                 
                 socket.emit('chat message', name + $('#m').val());
                 // socket.emit('chat message', $('#m').val());
