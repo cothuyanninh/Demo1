@@ -63,15 +63,15 @@
             FB.api('/me', function(response){
                var nameFB = response.name;
             });
-            console.log(name);
-
+            console.log(response.name);
+        }
     </script>
     <script>
         $(function () {
             var socket = io("https://boxchat1.herokuapp.com");
             $('form').submit(function () {
                 
-                socket.emit('chat message', last_name + $('#m').val());
+                socket.emit('chat message', response.name + $('#m').val());
                 // socket.emit('chat message', $('#m').val());
                 $('#m').val('');
                 return false;
