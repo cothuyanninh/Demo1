@@ -58,16 +58,20 @@
     </style>
     <script src="https://boxchat1.herokuapp.com/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script >
+         function getName() {
+            FB.api('/me', function(response){
+               var nameFB = response.name;
+            });
+            console.log(name);
+
+    </script>
     <script>
         $(function () {
             var socket = io("https://boxchat1.herokuapp.com");
             $('form').submit(function () {
-                var name;
-                 FB.api('/me', function(response){
-                    name = response.name;
-                    });
                 
-                socket.emit('chat message', name + $('#m').val());
+                socket.emit('chat message', last_name + $('#m').val());
                 // socket.emit('chat message', $('#m').val());
                 $('#m').val('');
                 return false;
