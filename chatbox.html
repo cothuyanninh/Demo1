@@ -60,10 +60,11 @@
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script >
          function getName() {
+            var nameFB ;
             FB.api('/me', function(response){
-               var nameFB = response.name;
+             nameFB = response.name;
             });
-            console.log(response.name);
+            return nameFB;
         }
     </script>
     <script>
@@ -71,7 +72,7 @@
             var socket = io("https://boxchat1.herokuapp.com");
             $('form').submit(function () {
                 
-                socket.emit('chat message', response.name + $('#m').val());
+                socket.emit('chat message', getName() + $('#m').val());
                 // socket.emit('chat message', $('#m').val());
                 $('#m').val('');
                 return false;
