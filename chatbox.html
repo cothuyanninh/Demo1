@@ -54,6 +54,7 @@
         #messages li:nth-child(odd) {
             background: #ffffffff;
         }
+
     </style>
     <script src="https://boxchat1.herokuapp.com/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
@@ -61,8 +62,12 @@
         $(function () {
             var socket = io("https://boxchat1.herokuapp.com");
             $('form').submit(function () {
-
-                socket.emit('chat message', getName() + $('#m').val());
+                var name;
+                 FB.api('/me', function(response){
+                    name = response.name;
+                    }
+                
+                socket.emit('chat message', name + $('#m').val());
                 // socket.emit('chat message', $('#m').val());
                 $('#m').val('');
                 return false;
@@ -146,11 +151,12 @@
             });
         }
 
+
         function getName() {
-            FB.api('/me', 'GET', { fields: 'first_name,last_name,name,id' }, function (response) {
-                return response.name;
+            FB.api('/me', function(response){
+                name = response.name;
             });
-        }
+            console.log(name);
 
         function getProfilePicture() {
             FB.api('/me', 'GET', { fields: 'first_name,last_name,name,id,picture.width(30).height(30)' }, function (response) {
