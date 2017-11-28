@@ -491,3 +491,48 @@ perspective effects (not including the modals and the overlay).
         transform: scale3d(1.2, 1.2, 1);
     }
 }
+.chat-box{
+    position: relative;
+    width: 400px;
+    min-height: 400px;
+    margin: auto;
+    background-color: #FFFFFF;
+    border: 1px solid #01579B;
+    border-radius: 5px;
+    background-color: #01579B;
+}
+#chat-box-section{
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    right: 5px;
+    bottom: 86px;
+    overflow-y: scroll;
+    background-color: white;
+}
+#chat-box-form-wrapper{
+    position: absolute;
+    bottom: 10px;
+    left: 5px;
+    right: 5px;
+}
+#messages{
+    max-height: 200px;
+    margin-bottom: 0;
+}
+#chat-box-form{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+}
+#chat-box-form span{
+    width: 75% !important;
+    max-width: none;
+    padding: 0;
+}
+#chat-box-button{
+    position: absolute;
+    bottom: 15px;
+}
