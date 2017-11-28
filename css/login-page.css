@@ -9204,16 +9204,23 @@ html.msie .case-item:hover .case-image-veil {
     color: #17a2b8;
     font-size: 22px;
 }
-
-.to-home-button {
-
+#url-button{
+    width: 50%;
+    margin: auto;
 }
-
 .to-home-button:hover {
     color: #17a2b8;
     background-color: #ffffff;
 }
 
 .to-home-button:focus {
+    outline: none;
+}
+.logout-button:hover {
+    color: #17a2b8;
+    background-color: #ffffff;
+}
+
+.logout-button:focus{
     outline: none;
 }
