@@ -1,8 +1,10 @@
 <!DOCTYPE html>
+
 <head>
     <title>Screen Broadcast</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/icon.png">
     <link rel="stylesheet" href="vendor/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="vendor/fonts/font-awesome-4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="vendor/css/animate/animate.css">
@@ -11,6 +13,32 @@
     <link rel="stylesheet" href="css/screen-broadcast-page.css">
     <script src="vendor/js/jquery/jquery-3.2.1.min.js"></script>
     <script src="vendor/js/bootstraps/bootstrap.min.js"></script>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '1312200818884269',
+                xfbml: true,
+                version: 'v2.1'
+            });
+
+            FB.getLoginStatus(function (response) {
+                if (response.status === 'connected') {
+                    console.log("connected");
+                } else {
+                    window.location.href = "error-page.html";
+                }
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+    </script>
     <script src="js/modernizr.custom.js"></script>
     <script src='js/socket-io.js'></script>
     <script src="js/get-screen-id.js"></script>
@@ -28,13 +56,13 @@
                 <span class="icon-bar"></span>
             </button>
             <div class="navbar-brand" id="logo">
-                <li><a href="home-page.html"><span>LIVE</span></a></li>
+                <li><a href="home-page.html"><span>CLGT</span></a></li>
             </div>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="stream-page.html">Stream now</a></li>
-                <li><a href="call-page.html">Call now</a></li>
+                <li><a href="game-page.html">Play Game</a></li>
                 <li><a href="group-call-page.html">Group call</a></li>
                 <li><a href="screen-broadcast-page.html">Screen broadcast</a></li>
             </ul>
@@ -47,7 +75,7 @@
                 <span>
                         Private ?? <a href="/screen-sharing/" target="_blank"
                                       title="Open this link for private screen sharing!"><code><strong
-                            id="unique-token">#123456789</strong></code></a>
+                        id="unique-token">#123456789</strong></code></a>
                 </span>
 
                 <div class="section-form-input">

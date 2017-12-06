@@ -5,8 +5,35 @@
     <title>Home</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="img/icon.png">
     <link rel="stylesheet" href="css/home-page.css">
     <script src="vendor/js/jquery/jquery-3.2.1.min.js"></script>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '1312200818884269',
+                xfbml: true,
+                version: 'v2.1'
+            });
+
+            FB.getLoginStatus(function (response) {
+                if (response.status === 'connected') {
+                    console.log("connected");
+                } else {
+                    window.location.href = "error-page.html";
+                }
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+    </script>
     <script src="js/home-page.js"></script>
 </head>
 
@@ -16,8 +43,9 @@
         <div id="navigation-overlay" class="navigation-overlay">
             <nav>
                 <ul>
+                    <script src="js/fb.js"></script>
                     <li><a href="">Profile</a></li>
-                    <li><a href="">Log Out</a></li>
+                    <li><a href="" onclick="fbLogoutUser()"> Log Out</a></li>
                     <li><a href="">About</a></li>
                 </ul>
             </nav>
@@ -63,9 +91,9 @@
                         </div>
                         <div class="slide-content-wrapper">
                             <div class="slide-content">
-                                <div class="slide-content-inner"><a href="call-page.html"><span
-                                        class="client">Call Private</span>
-                                    <h2 style="font-size: 50.8333px;">A call that'll make you closer...</h2>
+                                <div class="slide-content-inner"><a href="game-page.html"><span
+                                        class="client">Gaming</span>
+                                    <h2 style="font-size: 50.8333px;">Let's play together...</h2>
                                     <div class="btn btn-inverse"><span class="inactive">Enter</span><span class="active"
                                                                                                           style="background-image: url(img/slide2.svg)">Enter</span>
                                     </div>
@@ -79,7 +107,7 @@
                         <div class="video-wrapper ">
                             <video class="slide-video hero-video-lazyload " preload="auto" autoplay="" loop=""
                                    muted="">
-                                <source data-src="img/pew3.mp4 " type="video/mp4 ">
+                                <source data-src="img/pew3.mp4" type="video/mp4">
                             </video>
 
                         </div>
@@ -102,7 +130,7 @@
                         <div class="video-wrapper ">
                             <video class="slide-video hero-video-lazyload " preload="auto" autoplay="" loop=""
                                    muted="">
-                                <source data-src="img/pew4.mp4 " type="video/mp4 ">
+                                <source data-src="img/pew1.mp4" type="video/mp4">
                             </video>
 
                         </div>
@@ -110,7 +138,7 @@
                             <div class="slide-content ">
                                 <div class="slide-content-inner "><a href="screen-broadcast-page.html "><span
                                         class="client ">Screen Broadcast</span>
-                                    <h2 style="font-size: 50.8333px; ">We'll make yours screen 2 in 1...</h2>
+                                    <h2 style="font-size: 50.8333px; ">You can show yours screen for everyone...</h2>
                                     <div class="btn btn-inverse "><span class="inactive ">Enter</span><span
                                             class="active "
                                             style="background-image: url(img/slide4.svg) ">Enter</span>

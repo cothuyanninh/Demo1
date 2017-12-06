@@ -1,15 +1,22 @@
 // initialize and setup facebook js sdk
 window.fbAsyncInit = function () {
     FB.init({
-        appId: '1280051495474685',
+        appId: '1312200818884269',
         xfbml: true,
         version: 'v2.8'
     });
 
     FB.getLoginStatus(function (response) {
         if (response.status === 'connected') {
-            document.getElementById('status').innerHTML = 'You have connected with Facebook';
+
+            FB.api('/me', function (response) {
+                localStorage.setItem('nameFB', response.name);
+                document.getElementById('status').innerHTML = "Welcome " + '<span style="color:#FF6D00">' + response.name +'</span>' + " to Cửu Long Giáng Thế Team!";
+            });
+
+
             document.getElementById('login').style.visibility = "hidden";
+
 
             // Create a url-button element
             var anchor = document.createElement("a");
@@ -19,13 +26,6 @@ window.fbAsyncInit = function () {
             anchor.classList.add('btn');
             anchor.classList.add('to-home-button');
             document.querySelector('.to-home-button').setAttribute('href', 'home-page.html');
-            //
-            // var logoutButton = document.createElement("button");
-            // var logoutButtonValue = document.createTextNode("Log out now");
-            // logoutButton.appendChild(logoutButtonValue);
-            // document.getElementById('url-button').appendChild(logoutButton);
-            // logoutButton.classList.add('btn');
-            // logoutButton.classList.add('logout-button');
 
 
         } else if (response.status === 'not_authorized') {
@@ -34,6 +34,8 @@ window.fbAsyncInit = function () {
             document.getElementById('status').innerHTML = 'You are not logged into Facebook';
         }
     });
+
+
 };
 (function (d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -50,7 +52,11 @@ window.fbAsyncInit = function () {
 function login() {
     FB.login(function (response) {
         if (response.status === 'connected') {
-            document.getElementById('status').innerHTML = 'You have connected with Facebook';
+            FB.api('/me', function (response) {
+                localStorage.setItem('nameFB', response.name);
+                document.getElementById('status').innerHTML = "Welcome " + '<span style="color:#FF6D00">' + response.name +'</span>' + " to Cửu Long Giáng Thế Team!";
+            });
+
             document.getElementById('login').style.visibility = "hidden";
 
             // Create a url-button element
@@ -62,13 +68,6 @@ function login() {
             anchor.classList.add('to-home-button');
             document.querySelector('.to-home-button').setAttribute('href', 'home-page.html');
 
-            // var logoutButton = document.createElement("button");
-            // var logoutButtonValue = document.createTextNode("Log out now");
-            // logoutButton.appendChild(logoutButtonValue);
-            // document.getElementById('url-button').appendChild(logoutButton);
-            // logoutButton.classList.add('btn');
-            // logoutButton.classList.add('logout-button');
-
 
         } else if (response.status === 'not_authorized') {
             document.getElementById('status').innerHTML = 'We are not logged in'
@@ -77,6 +76,8 @@ function login() {
         }
     }, {scope: 'email'});
 }
+
+
 
 
 // getting basic user info
